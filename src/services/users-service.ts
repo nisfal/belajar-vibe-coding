@@ -92,4 +92,18 @@ export class UsersService {
 
     return result;
   }
+
+  /**
+   * Logika logout pengguna
+   * Memverifikasi token, kemudian menghapusnya dari tabel sessions.
+   */
+  static async logout(token: string) {
+    // 1. Verifikasi token menggunakan getCurrentUser (otomatis throw Unauthorized jika tidak valid)
+    await this.getCurrentUser(token);
+
+    // 2. Hapus token dari tabel sessions
+    await db.delete(sessions).where(eq(sessions.token, token));
+
+    return { success: true };
+  }
 }
