@@ -70,4 +70,43 @@ export const usersRoute = new Elysia({ prefix: "/api/users" })
         password: t.String({ minLength: 1 }),
       }),
     }
+  )
+  .get(
+    "/current",
+    async ({ headers, set }) => {
+      try {
+        const authorization = headers["authorization"];
+        if (!authorization || !authorization.startsWith("Bearer ")) {
+          set.status = 401;
+          return {
+            error: "Unauthorized",
+          };
+        }
+
+        const token = authorization.substring(7); // Hapus "Bearer "
+        const user = await UsersService.getCurrentUser(token);
+
+        return {
+          data: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            created_at: user.createdAt,
+          },
+        };
+      } catch (err: any) {
+        if (err.message === "Unauthorized") {
+          set.status = 401;
+          return {
+            error: "Unauthorized",
+          };
+        }
+
+        set.status = 500;
+        return {
+          error: err.message || "Internal Server Error",
+        };
+      }
+    }
   );
+
