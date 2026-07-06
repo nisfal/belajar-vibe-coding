@@ -15,6 +15,13 @@
       "when": 1783323746346,
       "tag": "0001_clammy_spot",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1783324643814,
+      "tag": "0002_colossal_post",
+      "breakpoints": true
     }
   ]
 }
