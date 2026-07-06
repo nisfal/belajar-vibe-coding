@@ -2,6 +2,12 @@ import { db } from "../db";
 import { users, sessions } from "../db/schema";
 import { eq } from "drizzle-orm";
 
+/**
+ * Service class yang mengelola logika bisnis dan operasi database untuk entitas User dan Session.
+ * Class ini menjembatani layer routing (ElysiaJS) dengan database (MySQL via Drizzle ORM).
+ * Di dalamnya terdapat fungsi untuk registrasi user baru, autentikasi login, 
+ * verifikasi sesi user saat ini, serta proses penutupan sesi (logout).
+ */
 export class UsersService {
   /**
    * Registrasi user baru
