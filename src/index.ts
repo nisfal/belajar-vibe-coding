@@ -1,13 +1,12 @@
 import { Elysia } from "elysia";
 import { env } from "./env";
-import { userRoutes } from "./routes/users";
+import { usersRoute } from "./routes/users-route";
 
 const app = new Elysia()
   .get("/", () => ({
     message: "Welcome to Elysia + Drizzle + MySQL API",
-    docs: "/users",
   }))
-  .use(userRoutes)
+  .use(usersRoute)
   .listen(env.PORT);
 
 console.log(

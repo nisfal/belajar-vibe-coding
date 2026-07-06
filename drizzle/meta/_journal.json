@@ -8,6 +8,13 @@
       "when": 1783322385763,
       "tag": "0000_skinny_husk",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1783323746346,
+      "tag": "0001_clammy_spot",
+      "breakpoints": true
     }
   ]
 }
