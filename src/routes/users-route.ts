@@ -36,6 +36,17 @@ export const usersRoute = new Elysia({ prefix: "/api/users" })
         email: t.String({ minLength: 3, maxLength: 255 }),
         password: t.String({ minLength: 1, maxLength: 255 }),
       }),
+      response: {
+        200: t.Object({
+          data: t.String(),
+        }),
+        400: t.Object({
+          error: t.String(),
+        }),
+        500: t.Object({
+          error: t.String(),
+        }),
+      },
       detail: {
         tags: ["Users"],
         summary: "Registrasi User Baru",
@@ -74,6 +85,17 @@ export const usersRoute = new Elysia({ prefix: "/api/users" })
         email: t.String({ minLength: 3, maxLength: 255 }),
         password: t.String({ minLength: 1, maxLength: 255 }),
       }),
+      response: {
+        200: t.Object({
+          data: t.String(),
+        }),
+        401: t.Object({
+          error: t.String(),
+        }),
+        500: t.Object({
+          error: t.String(),
+        }),
+      },
       detail: {
         tags: ["Users"],
         summary: "Login User",
@@ -119,6 +141,22 @@ export const usersRoute = new Elysia({ prefix: "/api/users" })
       }
     },
     {
+      response: {
+        200: t.Object({
+          data: t.Object({
+            id: t.Number(),
+            name: t.String(),
+            email: t.String(),
+            created_at: t.Date(),
+          }),
+        }),
+        401: t.Object({
+          error: t.String(),
+        }),
+        500: t.Object({
+          error: t.String(),
+        }),
+      },
       detail: {
         tags: ["Users"],
         summary: "Get Current User Profile",
@@ -164,6 +202,17 @@ export const usersRoute = new Elysia({ prefix: "/api/users" })
       }
     },
     {
+      response: {
+        200: t.Object({
+          data: t.String(),
+        }),
+        401: t.Object({
+          error: t.String(),
+        }),
+        500: t.Object({
+          error: t.String(),
+        }),
+      },
       detail: {
         tags: ["Users"],
         summary: "Logout User",
