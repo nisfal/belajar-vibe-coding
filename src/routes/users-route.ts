@@ -26,15 +26,15 @@ export const usersRoute = new Elysia({ prefix: "/api/users" })
 
         set.status = 500;
         return {
-          error: err.message || "Internal Server Error",
+          error: "Internal Server Error",
         };
       }
     },
     {
       body: t.Object({
-        name: t.String({ minLength: 1 }),
-        email: t.String({ minLength: 3 }),
-        password: t.String({ minLength: 1 }),
+        name: t.String({ minLength: 1, maxLength: 255 }),
+        email: t.String({ minLength: 3, maxLength: 255 }),
+        password: t.String({ minLength: 1, maxLength: 255 }),
       }),
     }
   )
@@ -60,14 +60,14 @@ export const usersRoute = new Elysia({ prefix: "/api/users" })
 
         set.status = 500;
         return {
-          error: err.message || "Internal Server Error",
+          error: "Internal Server Error",
         };
       }
     },
     {
       body: t.Object({
-        email: t.String({ minLength: 3 }),
-        password: t.String({ minLength: 1 }),
+        email: t.String({ minLength: 3, maxLength: 255 }),
+        password: t.String({ minLength: 1, maxLength: 255 }),
       }),
     }
   )
@@ -104,7 +104,7 @@ export const usersRoute = new Elysia({ prefix: "/api/users" })
 
         set.status = 500;
         return {
-          error: err.message || "Internal Server Error",
+          error: "Internal Server Error",
         };
       }
     }
@@ -137,7 +137,7 @@ export const usersRoute = new Elysia({ prefix: "/api/users" })
 
         set.status = 500;
         return {
-          error: err.message || "Internal Server Error",
+          error: "Internal Server Error",
         };
       }
     }
