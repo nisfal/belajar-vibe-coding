@@ -37,4 +37,37 @@ export const usersRoute = new Elysia({ prefix: "/api/users" })
         password: t.String({ minLength: 1 }),
       }),
     }
+  )
+  .post(
+    "/login",
+    async ({ body, set }) => {
+      try {
+        const token = await UsersService.login({
+          email: body.email,
+          password: body.password,
+        });
+
+        return {
+          data: token,
+        };
+      } catch (err: any) {
+        if (err.message === "Email atau password salah") {
+          set.status = 401;
+          return {
+            error: "Email atau password salah",
+          };
+        }
+
+        set.status = 500;
+        return {
+          error: err.message || "Internal Server Error",
+        };
+      }
+    },
+    {
+      body: t.Object({
+        email: t.String({ minLength: 3 }),
+        password: t.String({ minLength: 1 }),
+      }),
+    }
   );
